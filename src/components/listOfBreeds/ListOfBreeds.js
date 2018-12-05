@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import BreedCard from './breedCard/BreedCard';
 
-import { getAllBreeds } from '../../serverRequests/getData';
+import { getAllBreeds, getImagesOfDogs } from '../../serverRequests/getData';
 
 class ListOfBreeds extends Component {
 
@@ -22,6 +22,10 @@ class ListOfBreeds extends Component {
        console.log( );
     }
 
+    getDataPhoto() {
+        getImagesOfDogs("hound", 4, "afghan" ).then(result => console.log(result.message))
+       console.log( );
+    }
 
 
 
@@ -30,6 +34,7 @@ class ListOfBreeds extends Component {
             <div className="ListOfBreeds">
                 <header>List of Breeds</header>
                 <button onClick={this.getData}>get breeds</button>
+                <button onClick={this.getDataPhoto}>get photose</button>
                 {this.getListOfBreedCards()}
             </div>
         );
