@@ -15,9 +15,9 @@ class BreedPage extends Component {
     return (
 
       <div className="BreedPage">
-        <BreedPageHeader />
-        <BreedPageBody name={this.props.match.params.id}/>
-        <BreedPageFooter />
+        <BreedPageHeader name={this.props.match.params.id}/>
+        <BreedPageBody name={this.props.match.params.id} picUrl={"https://images.dog.ceo/breeds/frise-bichon/stevebaxter_bichon_frise.jpg"}/>
+        <BreedPageFooter name={this.props.match.params.id} picUrl={"https://images.dog.ceo/breeds/frise-bichon/stevebaxter_bichon_frise.jpg"}/>
       </div>
 
     );

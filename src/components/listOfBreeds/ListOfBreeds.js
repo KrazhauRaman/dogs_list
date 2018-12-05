@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import BreedCard from './breedCard/BreedCard';
 
-
+import { getAllBreeds } from '../../serverRequests/getData';
 
 class ListOfBreeds extends Component {
 
@@ -10,17 +10,26 @@ class ListOfBreeds extends Component {
     getListOfBreedCards() {
         const listOfBreedCards = [];
         for (let i = 0; i < 10; i++) {
-            listOfBreedCards.push(<BreedCard key={i} name={i} picUrl={"https://images.dog.ceo/breeds/frise-bichon/stevebaxter_bichon_frise.jpg"}/>);
+            listOfBreedCards.push(<BreedCard key={i} name={i} picUrl={"https://images.dog.ceo/breeds/frise-bichon/stevebaxter_bichon_frise.jpg"} />);
         }
         console.log(listOfBreedCards);
         return listOfBreedCards;
     }
 
 
+    getData() {
+        getAllBreeds().then(result => console.log(result.message))
+       console.log( );
+    }
+
+
+
+
     render() {
         return (
             <div className="ListOfBreeds">
                 <header>List of Breeds</header>
+                <button onClick={this.getData}>get breeds</button>
                 {this.getListOfBreedCards()}
             </div>
         );
