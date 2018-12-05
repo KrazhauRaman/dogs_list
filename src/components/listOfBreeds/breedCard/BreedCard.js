@@ -13,7 +13,7 @@ const BreedCard = ({ name, picUrl }) =>
 
         <div className="BreedCard">
                 <h1>{name}</h1>
-                <Link to={`/breed-page/${name}`}><img style={picStyle} src={picUrl} alt="Dog photo" /></Link>
+                <Link to={`/breed-page/${name}`}><img style={picStyle} src={picUrl} alt="Dog" /></Link>
         </div>
 
 

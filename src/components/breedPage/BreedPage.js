@@ -2,6 +2,11 @@
 
 import React, { Component } from 'react';
 
+import BreedPageHeader from './breedPageComponents/BreedPageHeader';
+import BreedPageBody from './breedPageComponents/BreedPageBody';
+import BreedPageFooter from './breedPageComponents/BreedPageFooter';
+
+
 class BreedPage extends Component {
   render() {
 
@@ -9,9 +14,11 @@ class BreedPage extends Component {
     console.log(this.props.match.params.id)
     return (
 
-        <div className="BreedPage">
-          123123213
-        </div>
+      <div className="BreedPage">
+        <BreedPageHeader />
+        <BreedPageBody name={this.props.match.params.id}/>
+        <BreedPageFooter />
+      </div>
 
     );
   }
