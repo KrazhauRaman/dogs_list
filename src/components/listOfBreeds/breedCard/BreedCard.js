@@ -2,10 +2,18 @@
 
 import React from 'react';
 
-const BreedCard = ({  }) =>
+import { Link } from "react-router-dom";
+
+const picStyle = {
+        width: '150px',
+        height: '150px',
+};
+
+const BreedCard = ({ name, picUrl }) =>
 
         <div className="BreedCard">
-           breed card
+                <h1>{name}</h1>
+                <Link to={`/breed-page/${name}`}><img style={picStyle} src={picUrl} alt="Dog photo" /></Link>
         </div>
 
 

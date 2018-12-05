@@ -16,7 +16,7 @@ ReactDOM.render(
         <HashRouter>
             <Switch>
                 <Route path="/" exact component={ListOfBreeds} />
-                <Route path="/breed-page" component={BreedPage} />
+                <Route path="/breed-page/:id" component={BreedPage} />
             </Switch>
         </HashRouter>
     </Provider>
