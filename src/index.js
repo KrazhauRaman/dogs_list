@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-//import * as serviceWorker from './serviceWorker';
 
-import { Provider } from "react-redux";
-import store from "./redux/store";
+
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
+import { Route, Switch, HashRouter } from "react-router-dom";
+
+import ListOfBreeds from './components/listOfBreeds/ListOfBreeds';
+import BreedPage from './components/breedPage/BreedPage';
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <HashRouter>
+            <Switch>
+                <Route path="/" exact component={ListOfBreeds} />
+                <Route path="/breed-page" component={BreedPage} />
+            </Switch>
+        </HashRouter>
     </Provider>
     , document.getElementById('root'));
-
-//serviceWorker.unregister();
