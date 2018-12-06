@@ -1,32 +1,23 @@
 import * as Actions from '../actions/actionConstants';
 
 const initialState = {
-    
+    breedPages: [],
 };
 
 export default function handle(state = initialState, action) {
     switch (action.type) {
 
-        case Actions.SWITCH_SORTING:
+        case Actions.ADD_BREED_PAGE:
             {
-                let newSortByTime, newDirectionUp,
-                    { sortByTime, directionUp } = state.sorting;
+              
+                const newBreedPages = [...state.breedPages];
+                newBreedPages.push(action.breedPage);
 
-                if (action.sortByTime === sortByTime) {
-                    newSortByTime = sortByTime;
-                    newDirectionUp = !directionUp;
-                }
-                else {
-                    newSortByTime = !sortByTime;
-                    newDirectionUp = directionUp;
-                };
+                console.log(newBreedPages)
 
                 return {
                     ...state,
-                    sorting: {
-                        sortByTime: newSortByTime,
-                        directionUp: newDirectionUp,
-                    },
+                    breedPages: newBreedPages,
                 };
             }
 

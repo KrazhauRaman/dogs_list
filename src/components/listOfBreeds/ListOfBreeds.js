@@ -12,7 +12,6 @@ class ListOfBreeds extends Component {
         for (let i = 0; i < 10; i++) {
             listOfBreedCards.push(<BreedCard key={i} name={i} picUrl={"https://images.dog.ceo/breeds/frise-bichon/stevebaxter_bichon_frise.jpg"} />);
         }
-        console.log(listOfBreedCards);
         return listOfBreedCards;
     }
 

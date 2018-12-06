@@ -1,4 +1,16 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/rootReducer';
+import createSagaMiddleware from 'redux-saga';
 
-export default createStore(rootReducer);
+import { getListOfBreeds } from './sagas/saga';
+
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(
+    rootReducer,
+    applyMiddleware(sagaMiddleware)
+);
+
+sagaMiddleware.run(getListOfBreeds);
+
+export default store;
