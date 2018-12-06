@@ -2,6 +2,7 @@ import * as Actions from '../actions/actionConstants';
 
 const initialState = {
     breedPages: [],
+    isPagesCreationCompleted: false,
 };
 
 export default function handle(state = initialState, action) {
@@ -9,7 +10,7 @@ export default function handle(state = initialState, action) {
 
         case Actions.ADD_BREED_PAGE:
             {
-              
+
                 const newBreedPages = [...state.breedPages];
                 newBreedPages.push(action.breedPage);
 
@@ -18,6 +19,16 @@ export default function handle(state = initialState, action) {
                 return {
                     ...state,
                     breedPages: newBreedPages,
+                };
+            }
+
+
+        case Actions.SET_FETCHING_COMPLETE:
+            {           
+
+                return {
+                    ...state,
+                    isPagesCreationCompleted: true,
                 };
             }
 

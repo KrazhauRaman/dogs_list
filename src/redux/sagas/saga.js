@@ -6,7 +6,7 @@ import * as Actions from '../actions/actionConstants';
 
 export function* getListOfBreeds() {
     yield call(fetchAndSaveListOfBreeds);
-    yield call(createBreedPagesAndFetchPhotoUrls);
+   yield call(createBreedPagesAndFetchPhotoUrls);
 };
 
 function* fetchAndSaveListOfBreeds() {
@@ -31,6 +31,7 @@ function* createBreedPagesAndFetchPhotoUrls() {
         const breedData = yield select(state => state.listOfBreeds.listOfBreeds);
         yield console.log(breedData)
 
+        let i = 0;
         // getting photoes for all breeds and  subbreeds
         for (let breed in breedData) {
 
@@ -53,6 +54,7 @@ function* createBreedPagesAndFetchPhotoUrls() {
 
                     yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { name: name, breedPics: breedPics.message } });
                 }
+                i++;
             }
             else {
                 yield console.log(breed)
@@ -63,12 +65,16 @@ function* createBreedPagesAndFetchPhotoUrls() {
                 yield console.log(breedPics.message)
 
                 yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { name: breed, breedPics: breedPics.message } });
+                
+            }
+            if (i === 2) {
+                break;
             }
         }
 
         // yield put({ type: Actions.SET_ALL_BREEDS, listOfBreeds: breedData.message });
 
-        yield put({ type: Actions.ADD_BREED_PAGE, breedPage: 22 });
+        yield put({ type: Actions.SET_FETCHING_COMPLETE });
 
 
 
