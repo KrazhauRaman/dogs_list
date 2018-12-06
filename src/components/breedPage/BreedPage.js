@@ -22,10 +22,6 @@ class BreedPage extends Component {
 
     let breedPage;
 
-
-    // const breedPage = this.props.breedPages.filter(page => page.id === id);
-    // const breedPageaads = this.props.breedPages.find(page => page.id === id);
-
     for (let i = 0; i < breedPages.length; i++) {
       if (breedPages[i].id === id) {
         breedPage = breedPages[i];
@@ -41,14 +37,8 @@ class BreedPage extends Component {
           breedPage.nextId = breedPages[i + 1].id
           :
           breedPage.nextId = null;
-
-
       }
     }
-
-    console.log(breedPage)
-
-    // return breedPage;
 
     return <React.Fragment>
       <BreedPageHeader prevId={breedPage.prevId} nextId={breedPage.nextId} />

@@ -1,4 +1,4 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { getAllBreeds, getImagesOfDogs } from '../../serverRequests/getData';
 import * as Actions from '../actions/actionConstants';
 
@@ -62,7 +62,6 @@ function* createBreedPagesAndFetchPhotoUrls() {
             }
         }
 
-        // yield put({ type: Actions.SET_ALL_BREEDS, listOfBreeds: breedData.message });
 
         yield put({ type: Actions.SET_FETCHING_COMPLETE });
 

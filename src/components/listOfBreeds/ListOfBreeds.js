@@ -3,6 +3,19 @@ import React, { Component } from 'react';
 import BreedCard from './breedCard/BreedCard';
 import { connect } from 'react-redux';
 
+const listOfBreedsStyle = {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+};
+
+const listOfBreedsWindowStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+}
+
 
 class ListOfBreeds extends Component {
 
@@ -18,11 +31,12 @@ class ListOfBreeds extends Component {
     }
 
     render() {
-        console.log(this.props.breedPages)
         return (
-            <div className="ListOfBreeds">
-                <header>List of Breeds</header>
-                {this.getListOfBreedCards()}
+            <div style={listOfBreedsWindowStyle}>
+                <h1>List of Breeds</h1>
+                <div style={listOfBreedsStyle} >
+                    {this.getListOfBreedCards()}
+                </div>
             </div>
         );
     }
