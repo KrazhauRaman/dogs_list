@@ -10,11 +10,8 @@ export default function handle(state = initialState, action) {
 
         case Actions.ADD_BREED_PAGE:
             {
-
                 const newBreedPages = [...state.breedPages];
                 newBreedPages.push(action.breedPage);
-
-                console.log(newBreedPages)
 
                 return {
                     ...state,

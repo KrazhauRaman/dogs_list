@@ -6,18 +6,22 @@ const picStyle = {
     height: '150px',
 };
 
-const BreedPageFooter = ({ name, picUrl }) =>
+const generatePics = (picUrls) => {
+    let imgArray = [];
+    for (let i = 1; i < picUrls.length; i++) {  //start from 2 picture, because 1st was used for main pic
+        imgArray.push(<img key={i} style={picStyle} src={picUrls[i]} alt="Dog" />);
+    }
+    return imgArray;
+}
 
-        <section className="BreedPageFooter">
-              Other pictures of {name}
-              <div>
-              <img style={picStyle} src={picUrl} alt="Dog" />
-              <img style={picStyle} src={picUrl} alt="Dog" />
-              <img style={picStyle} src={picUrl} alt="Dog" />
-              <img style={picStyle} src={picUrl} alt="Dog" />
-              <img style={picStyle} src={picUrl} alt="Dog" />
-              </div>
-        </section>
+const BreedPageFooter = ({ name, picUrls }) =>
+
+    <section className="BreedPageFooter">
+        Other pictures of {name}
+        <div>
+            {generatePics(picUrls)}
+        </div>
+    </section>
 
 
 export default BreedPageFooter;

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import BreedCard from './breedCard/BreedCard';
 import { connect } from 'react-redux';
 
-import { getAllBreeds, getImagesOfDogs } from '../../serverRequests/getData';
 
 class ListOfBreeds extends Component {
 
@@ -13,7 +12,7 @@ class ListOfBreeds extends Component {
             { breedPages } = this.props;
 
         for (let i = 0; i < breedPages.length; i++) {
-            listOfBreedCards.push(<BreedCard key={i} name={breedPages[i].name} picUrl={breedPages[i].breedPics[0]} />);
+            listOfBreedCards.push(<BreedCard key={i} id={breedPages[i].id} name={breedPages[i].name} picUrl={breedPages[i].breedPics[0]} />);
         }
         return listOfBreedCards;
     }
@@ -23,7 +22,6 @@ class ListOfBreeds extends Component {
         return (
             <div className="ListOfBreeds">
                 <header>List of Breeds</header>
-
                 {this.getListOfBreedCards()}
             </div>
         );
@@ -32,16 +30,9 @@ class ListOfBreeds extends Component {
 
 
 const getDataFromStore = store => ({
-    // viewport: store.viewport,
     breedPages: store.breedPage.breedPages,
     isPagesCreationCompleted: store.breedPage.isPagesCreationCompleted,
 })
 
-const setDataToStore = dispatch => ({
-    // changeViewport: (changedViewport) => dispatch(changeViewport(changedViewport)),
-    // fetchWeatherData: () => dispatch(fetchWeatherData())
-})
-
-
-export default connect(getDataFromStore, setDataToStore)(ListOfBreeds);
+export default connect(getDataFromStore)(ListOfBreeds);
 

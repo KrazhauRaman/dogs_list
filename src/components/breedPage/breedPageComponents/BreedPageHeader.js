@@ -4,12 +4,12 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 
-const BreedPageHeader = ({name}) =>
+const BreedPageHeader = ({prevId, nextId}) =>
 
         <nav className="BreedPageHeader">
-              <Link to="/"><button>back</button></Link>
-              <Link to={`/breed-page/${+name-1}`}><button>prev</button></Link>
-              <Link to={`/breed-page/${+name+1}`}><button>next</button></Link>              
+              <Link to="/"><button>Home</button></Link>
+              <Link to={`/breed-page/${prevId}`}><button disabled={!prevId}>prev</button></Link>
+              <Link to={`/breed-page/${nextId}`}><button disabled={!nextId}>next</button></Link>              
         </nav>
 
 

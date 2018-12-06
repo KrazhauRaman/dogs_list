@@ -9,11 +9,11 @@ const picStyle = {
         height: '150px',
 };
 
-const BreedCard = ({ name, picUrl }) =>
+const BreedCard = ({ id, name, picUrl }) =>
 
         <div className="BreedCard">
                 <h1>{name}</h1>
-                <Link to={`/breed-page/${name}`}><img style={picStyle} src={picUrl} alt="Dog" /></Link>
+                <Link to={`/breed-page/${id}`}><img style={picStyle} src={picUrl} alt="Dog"/></Link>
         </div>
 
 

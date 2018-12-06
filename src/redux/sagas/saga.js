@@ -6,7 +6,7 @@ import * as Actions from '../actions/actionConstants';
 
 export function* getListOfBreeds() {
     yield call(fetchAndSaveListOfBreeds);
-   yield call(createBreedPagesAndFetchPhotoUrls);
+    yield call(createBreedPagesAndFetchPhotoUrls);
 };
 
 function* fetchAndSaveListOfBreeds() {
@@ -29,43 +29,33 @@ function* createBreedPagesAndFetchPhotoUrls() {
     try {
 
         const breedData = yield select(state => state.listOfBreeds.listOfBreeds);
-        yield console.log(breedData)
 
         let i = 0;
+
         // getting photoes for all breeds and  subbreeds
         for (let breed in breedData) {
 
 
             if (breedData[breed].length > 0) {
-
-                yield console.log(breedData[breed])
-
                 for (let subBreed in breedData[breed]) {
-                    yield console.log(breed + " " + breedData[breed][subBreed])
+                    const name = breed + " " + breedData[breed][subBreed];
+                    const id = breed + "-" + breedData[breed][subBreed];
 
-                    let name = breed + " " + breedData[breed][subBreed];
-
-                    let breedPics = yield call(() => {
-                        console.log(breed)
-                        return getImagesOfDogs(breed, 5, breedData[breed][subBreed])
+                    const breedPics = yield call(() => {
+                        return getImagesOfDogs(breed, 5, breedData[breed][subBreed]);
                     });
 
-                    yield console.log(breedPics.message)
-
-                    yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { name: name, breedPics: breedPics.message } });
+                    yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { id: id, name: name, breedPics: breedPics.message } });
                 }
                 i++;
             }
             else {
-                yield console.log(breed)
                 let breedPics = yield call(() => {
-                    console.log(breed)
-                    return getImagesOfDogs(breed, 5)
+                    return getImagesOfDogs(breed, 5);
                 });
-                yield console.log(breedPics.message)
 
-                yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { name: breed, breedPics: breedPics.message } });
-                
+                yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { id: breed, name: breed, breedPics: breedPics.message } });
+
             }
             if (i === 2) {
                 break;
