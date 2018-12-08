@@ -1,12 +1,20 @@
-// here will be page of specific breed with descrition and photo
-
 import React, { Component } from 'react';
-
 import BreedPageHeader from './breedPageComponents/BreedPageHeader';
 import BreedPageBody from './breedPageComponents/BreedPageBody';
 import BreedPageFooter from './breedPageComponents/BreedPageFooter';
-
 import { connect } from 'react-redux';
+
+
+const breedPageStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+};
+
+const loadingStyle = {
+  textAlign: 'center',
+  paddingTop: '50px',
+};
+
 
 
 class BreedPage extends Component {
@@ -37,6 +45,8 @@ class BreedPage extends Component {
           breedPage.nextId = breedPages[i + 1].id
           :
           breedPage.nextId = null;
+
+        break; // we need only to find a page, when it found there no need to countinue "for" loop
       }
     }
 
@@ -50,21 +60,18 @@ class BreedPage extends Component {
   }
 
   render() {
-
-
-
     return (
-
-      (this.props.isPagesCreationCompleted)
+      (this.props.isPagesCreationCompleted) //if user decides to load page directly
         ?
-        <div className="BreedPage">
+        <div style={breedPageStyle}>
           {this.composeBreedPageData()}
         </div>
         :
-        <div className="BreedPage">
-          Loading
-      </div>
-
+        <div style={loadingStyle}>
+          <h1>
+            Loading
+          </h1>
+        </div>
     );
   }
 }

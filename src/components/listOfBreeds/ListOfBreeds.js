@@ -1,4 +1,3 @@
-// here will list of all breeds
 import React, { Component } from 'react';
 import BreedCard from './breedCard/BreedCard';
 import { connect } from 'react-redux';

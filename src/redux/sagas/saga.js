@@ -13,13 +13,9 @@ function* fetchAndSaveListOfBreeds() {
     try {
 
         const breedData = yield call(getAllBreeds);
-
         yield put({ type: Actions.SET_ALL_BREEDS, listOfBreeds: breedData.message });
 
-
-
     } catch (error) {
-
         yield console.log("Error on fetching dogs breeds data", error);
     }
 }
@@ -28,21 +24,18 @@ function* fetchAndSaveListOfBreeds() {
 function* createBreedPagesAndFetchPhotoUrls() {
     try {
 
-        const breedData = yield select(state => state.listOfBreeds.listOfBreeds);
-
-        let i = 0;
+        const breedData = yield select(state => state.listOfBreeds.listOfBreeds),
+            countOfImages = 11; // hare can be changed count of images for dogs pages (1st for main pic)
 
         // getting photoes for all breeds and  subbreeds
+        let i = 0; //delere it after test
         for (let breed in breedData) {
-
-
             if (breedData[breed].length > 0) {
                 for (let subBreed in breedData[breed]) {
                     const name = breed + " " + breedData[breed][subBreed];
                     const id = breed + "-" + breedData[breed][subBreed];
-
                     const breedPics = yield call(() => {
-                        return getImagesOfDogs(breed, 5, breedData[breed][subBreed]);
+                        return getImagesOfDogs(breed, countOfImages, breedData[breed][subBreed]);
                     });
 
                     yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { id: id, name: name, breedPics: breedPics.message } });
@@ -51,7 +44,7 @@ function* createBreedPagesAndFetchPhotoUrls() {
             }
             else {
                 let breedPics = yield call(() => {
-                    return getImagesOfDogs(breed, 5);
+                    return getImagesOfDogs(breed, countOfImages);
                 });
 
                 yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { id: breed, name: breed, breedPics: breedPics.message } });
@@ -62,13 +55,9 @@ function* createBreedPagesAndFetchPhotoUrls() {
             }
         }
 
-
         yield put({ type: Actions.SET_FETCHING_COMPLETE });
 
-
-
     } catch (error) {
-
         yield console.log("Error on  fetching photoes", error);
     }
 }

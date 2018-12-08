@@ -1,9 +1,16 @@
-// here will be footer of breed page
 import React from 'react';
 
 const picStyle = {
-    width: '150px',
-    height: '150px',
+    width: '180px',
+    height: '180px',
+    borderRadius: '15px',
+    marginBottom: '5px'
+};
+
+const picsDivStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
 };
 
 const generatePics = (picUrls) => {
@@ -17,8 +24,10 @@ const generatePics = (picUrls) => {
 const BreedPageFooter = ({ name, picUrls }) =>
 
     <section className="BreedPageFooter">
-        Other pictures of {name}
-        <div>
+        <h3>
+            Other pictures of {name}:
+        </h3>
+        <div style={picsDivStyle}>
             {generatePics(picUrls)}
         </div>
     </section>
