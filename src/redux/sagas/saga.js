@@ -55,7 +55,7 @@ function* createBreedPagesAndFetchPhotoUrls() {
       }
     }
 
-    // letting app know that all fetching is finished
+    // letting app know that all fetching are finished
     yield put({ type: Actions.SET_FETCHING_COMPLETE });
   } catch (error) {
     yield console.log('Error on  fetching photoes', error);
