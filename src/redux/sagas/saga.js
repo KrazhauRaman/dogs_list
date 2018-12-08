@@ -3,59 +3,67 @@ import { getAllBreeds, getImagesOfDogs } from '../../serverRequests/getData';
 import * as Actions from '../actions/actionConstants';
 
 
-export function* getListOfBreeds() {
-    yield call(fetchAndSaveListOfBreeds);
-    yield call(createBreedPagesAndFetchPhotoUrls);
-};
-
 function* fetchAndSaveListOfBreeds() {
-    try {
-
-        const breedData = yield call(getAllBreeds);
-        yield put({ type: Actions.SET_ALL_BREEDS, listOfBreeds: breedData.message });
-
-    } catch (error) {
-        yield console.log("Error on fetching dogs breeds data", error);
-    }
+  try {
+    const breedData = yield call(getAllBreeds);
+    yield put({ type: Actions.SET_ALL_BREEDS, listOfBreeds: breedData.message });
+  } catch (error) {
+    yield console.log('Error on fetching dogs breeds data', error);
+  }
 }
 
 
 function* createBreedPagesAndFetchPhotoUrls() {
-    try {
+  try {
+    const breedData = yield select(state => state.listOfBreeds.listOfBreeds);
 
-        const breedData = yield select(state => state.listOfBreeds.listOfBreeds),
-            countOfImages = 11; // hare can be changed count of images for dogs pages (1st for main pic)
+    // here can be changed count of images for dogs pages (1st for main pic)
+    const countOfImages = 11;
 
-        // getting photoes for all breeds and  subbreeds
-        let i = 0; //delere it after test
-        for (let breed in breedData) { //if dog have subbreeds their names will convert to breed+subbreed
-            if (breedData[breed].length > 0) {
-                for (let subBreed in breedData[breed]) {
-                    const name = breed + " " + breedData[breed][subBreed];
-                    const id = breed + "-" + breedData[breed][subBreed];
-                    const breedPics = yield call(() => {
-                        return getImagesOfDogs(breed, countOfImages, breedData[breed][subBreed]);
-                    });
+    // getting photoes for all breeds and  subbreeds
+    // if dog have subbreeds their names will convert to breed+subbreed
 
-                    yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { id: id, name: name, breedPics: breedPics.message } });
-                }
-                i++;
-            }
-            else {
-                const breedPics = yield call(() => {
-                    return getImagesOfDogs(breed, countOfImages);
-                });
+    const breedKeys = Object.keys(breedData);
+    const breedValues = Object.values(breedData);
 
-                yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { id: breed, name: breed, breedPics: breedPics.message } });
-            }
-            if (i === 2) {
-                break;
-            }
+    for (let i = 0; i < breedKeys.length; i += 1) {
+      if (breedValues[i].length > 0) {
+        for (let j = 0; j < breedValues[i].length; j += 1) {
+          const name = `${breedKeys[i]} ${breedValues[i][j]}`;
+          const id = `${breedKeys[i]}-${breedValues[i][j]}`;
+
+          const breedPics = yield call(
+            () => getImagesOfDogs(breedKeys[i], countOfImages, breedValues[i][j]),
+          );
+
+          yield put(
+            {
+              type: Actions.ADD_BREED_PAGE,
+              breedPage: { id, name, breedPics: breedPics.message },
+            },
+          );
         }
+      } else {
+        const breedPics = yield call(() => getImagesOfDogs(breedKeys[i], countOfImages));
 
-        yield put({ type: Actions.SET_FETCHING_COMPLETE }); //letting app know that all fetching is finished
-
-    } catch (error) {
-        yield console.log("Error on  fetching photoes", error);
+        yield put(
+          {
+            type: Actions.ADD_BREED_PAGE,
+            breedPage: { id: breedKeys[i], name: breedKeys[i], breedPics: breedPics.message },
+          },
+        );
+      }
     }
+
+    // letting app know that all fetching is finished
+    yield put({ type: Actions.SET_FETCHING_COMPLETE });
+  } catch (error) {
+    yield console.log('Error on  fetching photoes', error);
+  }
+}
+
+// eslint-disable-next-line import/prefer-default-export
+export function* getListOfBreeds() {
+  yield call(fetchAndSaveListOfBreeds);
+  yield call(createBreedPagesAndFetchPhotoUrls);
 }

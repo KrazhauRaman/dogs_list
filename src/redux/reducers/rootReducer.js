@@ -4,6 +4,6 @@ import listOfBreeds from './listOfBreeds';
 
 
 export default combineReducers({
-    breedPage,
-    listOfBreeds,
+  breedPage,
+  listOfBreeds,
 });
