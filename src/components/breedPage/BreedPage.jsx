@@ -91,11 +91,11 @@ export default connect(getDataFromStore)(BreedPage);
 BreedPage.propTypes = {
   breedPages: PropTypes.arrayOf(PropTypes.object),
   isPagesCreationCompleted: PropTypes.bool,
-  match: {
-    params: {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
       id: PropTypes.string,
-    },
-  },
+    }),
+  }),
 };
 
 BreedPage.defaultProps = {
