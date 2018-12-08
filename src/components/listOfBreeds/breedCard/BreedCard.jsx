@@ -46,6 +46,7 @@ const BreedCard = ({ id, name, picUrl }) => (
     </div>
   </Link>
 );
+
 export default BreedCard;
 
 

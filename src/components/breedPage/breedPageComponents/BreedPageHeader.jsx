@@ -28,6 +28,7 @@ const BreedPageHeader = ({ prevId, nextId }) => (
     </div>
   </nav>
 );
+
 export default BreedPageHeader;
 
 

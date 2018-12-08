@@ -36,6 +36,7 @@ const BreedPageFooter = ({ name, picUrls }) => (
     </div>
   </section>
 );
+
 export default BreedPageFooter;
 
 
