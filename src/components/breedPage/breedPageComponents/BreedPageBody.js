@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const picStyle = {
     width: '230px',
     height: '230px',
@@ -10,6 +11,7 @@ const picStyle = {
 const headerStyle = {
     textAlign: 'center'
 };
+
 
 const BreedPageBody = ({ name, picUrl }) =>
 

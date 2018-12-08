@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BreedCard from './breedCard/BreedCard';
 import { connect } from 'react-redux';
 
+
 const listOfBreedsStyle = {
     display: 'flex',
     flexDirection: 'row',
@@ -17,7 +18,6 @@ const listOfBreedsWindowStyle = {
 
 
 class ListOfBreeds extends Component {
-
 
     getListOfBreedCards() {
         const listOfBreedCards = [],
@@ -41,11 +41,11 @@ class ListOfBreeds extends Component {
     }
 }
 
-
 const getDataFromStore = store => ({
     breedPages: store.breedPage.breedPages,
     isPagesCreationCompleted: store.breedPage.isPagesCreationCompleted,
 })
+
 
 export default connect(getDataFromStore)(ListOfBreeds);
 

@@ -3,7 +3,6 @@ import { getAllBreeds, getImagesOfDogs } from '../../serverRequests/getData';
 import * as Actions from '../actions/actionConstants';
 
 
-
 export function* getListOfBreeds() {
     yield call(fetchAndSaveListOfBreeds);
     yield call(createBreedPagesAndFetchPhotoUrls);
@@ -29,7 +28,7 @@ function* createBreedPagesAndFetchPhotoUrls() {
 
         // getting photoes for all breeds and  subbreeds
         let i = 0; //delere it after test
-        for (let breed in breedData) {
+        for (let breed in breedData) { //if dog have subbreeds their names will convert to breed+subbreed
             if (breedData[breed].length > 0) {
                 for (let subBreed in breedData[breed]) {
                     const name = breed + " " + breedData[breed][subBreed];
@@ -43,19 +42,18 @@ function* createBreedPagesAndFetchPhotoUrls() {
                 i++;
             }
             else {
-                let breedPics = yield call(() => {
+                const breedPics = yield call(() => {
                     return getImagesOfDogs(breed, countOfImages);
                 });
 
                 yield put({ type: Actions.ADD_BREED_PAGE, breedPage: { id: breed, name: breed, breedPics: breedPics.message } });
-
             }
             if (i === 2) {
                 break;
             }
         }
 
-        yield put({ type: Actions.SET_FETCHING_COMPLETE });
+        yield put({ type: Actions.SET_FETCHING_COMPLETE }); //letting app know that all fetching is finished
 
     } catch (error) {
         yield console.log("Error on  fetching photoes", error);

@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { Link } from "react-router-dom";
+
 
 const headerStyle = {
       display: 'flex',
@@ -15,7 +15,8 @@ const buttonStyle = {
       border: '1px solid black',
       backgroundColor: 'rgb(42, 255, 104)',
       fontWeight: '1000',
-}
+};
+
 
 const BreedPageHeader = ({ prevId, nextId }) =>
 

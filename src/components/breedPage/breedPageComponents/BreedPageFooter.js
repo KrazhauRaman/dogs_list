@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const picStyle = {
     width: '180px',
     height: '180px',
@@ -13,6 +14,7 @@ const picsDivStyle = {
     justifyContent: 'space-around',
 };
 
+
 const generatePics = (picUrls) => {
     let imgArray = [];
     for (let i = 1; i < picUrls.length; i++) {  //start from 2 picture, because 1st was used for main pic
@@ -20,6 +22,7 @@ const generatePics = (picUrls) => {
     }
     return imgArray;
 }
+
 
 const BreedPageFooter = ({ name, picUrls }) =>
 

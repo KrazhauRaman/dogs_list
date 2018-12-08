@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+
 const picStyle = {
         width: '180px',
         height: '180px',
@@ -32,7 +33,6 @@ const headerStyle = {
         color: 'black',
         textAlign: 'center'
 };
-
 
 
 const BreedCard = ({ id, name, picUrl }) =>

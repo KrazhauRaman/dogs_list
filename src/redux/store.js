@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/rootReducer';
 import createSagaMiddleware from 'redux-saga';
-
 import { getListOfBreeds } from './sagas/saga';
+
 
 const sagaMiddleware = createSagaMiddleware();
 

@@ -13,7 +13,7 @@ export function getAllBreeds() {
 export function getImagesOfDogs(breed, quantity = 1, subBreed = null) {
 
     let url = `https://dog.ceo/api/breed/${breed}`;
-
+    
     if (subBreed) {
         url += `/${subBreed}`;
     }

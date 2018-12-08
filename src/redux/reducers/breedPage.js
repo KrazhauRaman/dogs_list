@@ -1,5 +1,6 @@
 import * as Actions from '../actions/actionConstants';
 
+
 const initialState = {
     breedPages: [],
     isPagesCreationCompleted: false,
@@ -18,7 +19,6 @@ export default function handle(state = initialState, action) {
                     breedPages: newBreedPages,
                 };
             }
-
 
         case Actions.SET_FETCHING_COMPLETE:
             {           

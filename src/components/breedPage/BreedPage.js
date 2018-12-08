@@ -16,12 +16,14 @@ const loadingStyle = {
 };
 
 
-
 class BreedPage extends Component {
-
 
   shouldComponentUpdate(props) {
     return props.isPagesCreationCompleted;
+  }
+
+  componentDidMount() { //to fix problem when scroll position passed from main page
+    window.scrollTo(0, 0);
   }
 
   composeBreedPageData() {
@@ -58,6 +60,7 @@ class BreedPage extends Component {
 
 
   }
+
 
   render() {
     return (
